@@ -1,0 +1,59 @@
+:root {
+    --color-white: #feffff;
+    --color-blue: #def2f1;
+    --color-babyblue: #3aafa9;
+    --color-darkblue: #2b7a78;
+    --color-dark: #17252A;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(180deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.853);
+}
+
+.nav-brand {
+    font-weight: 400;
+    font-size: 1.5em;
+    color: var(--color-dark);
+}
+
+.containerTime {
+    background-color: var(--color-white);
+    width: 90vw;
+}
+
+.time,
+.title-time {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 0.5em;
+}
+
+.title-time {
+    color: var(--color-darkblue);
+}
+
+
+/*CSS MAIN PAGE*/
+.containerInfo {
+    background-color: var(--color-white);
+    height: auto;
+    width: 90vw;
+}
+
+/*CSS HOME PAGE*/
+.btn-Container {
+    background-color: var(--color-white);
+    width: 80vw;
+    height: auto;
+}
+
+.btn-actions:hover {
+    background-color: hsla(177, 50%, 46%, 0.424);
+}
