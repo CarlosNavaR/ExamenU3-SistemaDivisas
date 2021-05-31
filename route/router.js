@@ -88,8 +88,8 @@ router.post('/venta', (req, res) => {
 router.post("/ticketC", (req, res) => {
   getdata();
   console.log(req.body)
-  BalanceActualUSD = req.body.CUSD + BalanceInicialUSD;
-  BalanceActualMXN = req.body.CMXN - BalanceInicialMXN;
+  BalanceActualUSD = Number(req.body.CUSD) + Number(BalanceInicialUSD);
+  BalanceActualMXN = Number(BalanceInicialMXN) - Number(req.body.CMXN);
 
   gananciaUSD = BalanceActualUSD - BalanceInicialUSD;
   ganancialMXN = BalanceActualMXN -BalanceInicialMXN
@@ -107,10 +107,12 @@ router.post("/ticketC", (req, res) => {
 
 router.post("/ticketV", (req, res) => {
   getdata();
-
-  BalanceActualUSD = req.body.CUSD - BalanceInicialUSD;
-  BalanceActualMXN = req.body.CMXN + BalanceInicialMXN;
-
+  console.log(req.body)
+  BalanceActualUSD = Number(BalanceInicialUSD) - Number(req.body.VUSD) ;
+  BalanceActualMXN = Number(req.body.VMXN) + Number(BalanceInicialMXN);
+  console.log(BalanceActualUSD)
+  console.log(BalanceActualMXN)
+  
   gananciaUSD = BalanceActualUSD - BalanceInicialUSD;
   ganancialMXN = BalanceActualMXN - BalanceInicialMXN
 
