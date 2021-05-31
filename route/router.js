@@ -37,8 +37,8 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  flag = 0;
   getdata();
+  flag = 0;
   res.render("pages/index", {
     title: "Inicio"
   });
