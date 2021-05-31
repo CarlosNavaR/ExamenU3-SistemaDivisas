@@ -31,6 +31,7 @@ let formatted = dt.format('Y-m-d');
 
 router.get("/", (req, res) => {
   getdata();
+  flag = 0;
   res.render("pages/index", {
     title: "Inicio"
   });
