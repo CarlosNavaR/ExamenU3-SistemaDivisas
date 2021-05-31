@@ -37,6 +37,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
+  flag = 0;
   getdata();
   res.render("pages/index", {
     title: "Inicio"
@@ -143,7 +144,7 @@ router.post('/reporte', (req, res) => {
 
 router.post('/home', (req, res) => {
   console.log(req.body)
-  flag = 0;
+ 
   res.render("pages/home", {
     title: "Inicio",
     Cajero: cajero,
