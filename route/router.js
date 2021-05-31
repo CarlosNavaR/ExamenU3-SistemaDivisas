@@ -143,6 +143,7 @@ router.post('/reporte', (req, res) => {
 
 router.post('/home', (req, res) => {
   console.log(req.body)
+  flag = 0;
   res.render("pages/home", {
     title: "Inicio",
     Cajero: cajero,
