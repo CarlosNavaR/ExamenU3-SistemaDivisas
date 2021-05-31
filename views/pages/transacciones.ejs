@@ -1,0 +1,179 @@
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 shadow rounded-lg container-compra">
+      <div class="container py-5">
+        <p class="text-center title-time pb-4" id="titleTransaccion">Venta de dolares</p>
+
+        <!--Boton cambio de formulario-->
+
+        <div class="col-md-12">
+          <form action="" name="form">
+            <p class="text-center">
+              <label class="switch">
+                <input type="checkbox" name='<%=name%>' onclick="showForm(this.checked)" id="view" checked>
+                <span class="slider round"></span>
+              </label>
+            </p>
+          </form>
+        </div>
+
+        <!--Venta de dolares -->
+        <div class="form-group" id="VentaDolares">
+          <p style="display: none;">
+            <input type="number" id="priceVenta" placeholder="0.00" min="1" step="0.01" required value="<%-ventaUSD%>">
+          </p>
+          <form action="ticketV" method="POST">
+            <div class="row">
+              <div class="col-md-5 pb-3">
+                <div class="row">
+                  <div class="col">
+                    <img src="img/mexico.png" alt="" width="50rem">
+                    <span class="lead">MXN</span>
+                  </div>
+                </div>
+                <input name="VMXN" id="VMXN" type="number" class="form-control" placeholder="0.00" min="1" step="0.01"
+                  required>
+              </div>
+              <div class="col-md-2">
+              </div>
+              <div class="col-md-5">
+                <div class="row">
+                  <div class="col">
+                    <img src="img/us.png" alt="" width="50rem">
+                    <span class="lead">USD</span>
+                  </div>
+                </div>
+                <input name="VUSD" id="VUSD" type="number" class="form-control" placeholder="0.00" min="1" step="0.01"
+                  required readonly>
+              </div>
+            </div>
+
+            <div class="row mt-4 justify-content-center">
+              <div class="col-md-2">
+                <button type="submit" class="btn-compra btn mr-2">Vender</button>
+              </div>
+          </form>
+          <div class="col-md-2">
+            <form action="turno" method="POST">
+              <button type="submit" class="btn-cancelar btn btn-link">Cancelar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!--Compra de dolares -->
+
+      <div class="form-group" style="display: none;" id="CompraDolares">
+        <p style="display: none;">
+          <input type="number" id="priceCompra" placeholder="0.00" min="1" step="0.01" required value="<%-CompraUSD%>">
+        </p>
+        <form action="ticketC" method="POST">
+          <div class="row">
+            <div class="col-md-5 pb-3">
+              <div class="row">
+                <div class="col">
+                  <img src="img/us.png" alt="" width="50rem">
+                  <span class="lead">USD</span>
+                </div>
+              </div>
+              <input name="CUSD" type="number" id="CUSD" class="form-control" placeholder="0.00" min="1" step="0.01"
+                required>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5">
+              <div class="row">
+                <div class="col">
+                  <img src="img/mexico.png" alt="" width="50rem">
+                  <span class="lead">MXN</span>
+                </div>
+              </div>
+              <input name="CMXN" id="CMXN" type="number" class="form-control" placeholder="0.00" min="1" step="0.01"
+                required readonly>
+            </div>
+          </div>
+
+          <div class="row mt-4 justify-content-center">
+            <div class="col-md-2">
+              <button type="submit" class="btn-compra btn mr-2">Comprar</button>
+            </div>
+        </form>
+        <div class="col-md-2">
+          <form action="turno" method="POST">
+            <button type="submit" class="btn-cancelar btn btn-link">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  var x = 1;
+  document.body.onload = function () {
+    var name = $("#view").attr('name');
+    var status = document.form.view.checked
+    if (x != 0) {
+      if (name == 'compra') {
+        $("#view").prop('checked', true);
+        $("#CompraDolares").show();
+        $("#VentaDolares").hide();
+        $("#titleTransaccion").text("Compra de dolares");
+        x = 0;
+      } else {
+        $("#view").prop('checked', false);
+        $("#VentaDolares").show();
+        $("#CompraDolares").hide();
+        $("#titleTransaccion").text("Venta de dolares");
+        x = 0;
+      }
+    }
+  }
+  function showForm(id) {
+    console.log(x)
+    if (x != 1) {
+      if (id === true) {
+        document.getElementById("CMXN").value = null;
+        document.getElementById("CUSD").value = null;
+        $("#CompraDolares").show();
+        $("#VentaDolares").hide();
+        $("#titleTransaccion").text("Compra de dolares");
+      } else {
+        document.getElementById("VMXN").value = null;
+        document.getElementById("VUSD").value = null;
+        $("#VentaDolares").show();
+        $("#CompraDolares").hide();
+        $("#titleTransaccion").text("Venta de dolares");
+      }
+    }
+  }
+  // Funcion conversion visual USD to MXN
+  let timeoutVenta
+  let inputUSDVenta = document.getElementById("VMXN");
+  let priceVenta = document.getElementById("priceVenta").value;
+
+  inputUSDVenta.addEventListener('keydown', () => {
+    clearTimeout(timeoutVenta);
+    timeoutVenta = setTimeout(() => {
+      let valueUSD = inputUSDVenta.value;
+      var x = document.getElementById("VUSD").value = (valueUSD / priceVenta).toFixed(2);
+      clearTimeout(timeoutVenta)
+    }, 500)
+  })
+  // Funcion conversion visual MXN to USD
+  let timeout
+  let inputMXNCompra = document.getElementById("CUSD");
+  let price = document.getElementById("priceCompra").value;
+
+  inputMXNCompra.addEventListener('keydown', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      let valueMXN = inputMXNCompra.value;
+      var x = document.getElementById("CMXN").value = (valueMXN * price).toFixed(2);
+      clearTimeout(timeout)
+    }, 500)
+  })
+</script>

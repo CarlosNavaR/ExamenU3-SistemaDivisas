@@ -1,59 +1,168 @@
 :root {
-    --color-white: #feffff;
-    --color-blue: #def2f1;
-    --color-babyblue: #3aafa9;
-    --color-darkblue: #2b7a78;
-    --color-dark: #17252A;
+  --color-white: #feffff;
+  --color-blue: #def2f1;
+  --color-babyblue: #3aafa9;
+  --color-darkblue: #2b7a78;
+  --color-dark: #17252a;
 }
 
 body {
-    min-height: 100vh;
-    font-family: 'Montserrat', sans-serif;
-    background-image: linear-gradient(180deg, #89f7fe 0%, #66a6ff 100%);
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  background-image: linear-gradient(180deg, #89f7fe 0%, #66a6ff 100%);
 }
 
 .navbar {
-    background-color: rgba(255, 255, 255, 0.853);
+  background-color: rgba(255, 255, 255, 0.853);
 }
 
 .nav-brand {
-    font-weight: 400;
-    font-size: 1.5em;
-    color: var(--color-dark);
+  font-weight: 400;
+  font-size: 1.5em;
+  color: var(--color-dark);
 }
 
 .containerTime {
-    background-color: var(--color-white);
-    width: 90vw;
+  background-color: var(--color-white);
+  width: 90vw;
 }
 
 .time,
 .title-time {
-    font-size: 1.3em;
-    font-weight: 800;
-    color: var(--color-dark);
-    line-height: 0.5em;
+  font-size: 1.3em;
+  font-weight: 800;
+  color: var(--color-dark);
+  line-height: 0.5em;
 }
 
 .title-time {
-    color: var(--color-darkblue);
+  color: var(--color-darkblue);
 }
 
-
 /*CSS MAIN PAGE*/
+.containerInfoM {
+  background-color: var(--color-white);
+  height: auto;
+  width: 90vw;
+}
+
 .containerInfo {
-    background-color: var(--color-white);
-    height: auto;
-    width: 90vw;
+  background-color: var(--color-white);
+  height: 36vh;
+  width: 90vw;
+}
+
+.containerInfo2 {
+  background-color: var(--color-white);
+  height: auto;
+  width: 90vw;
+}
+
+.menuDetalle {
+  background-color: var(--color-white);
+  height: 100%;
+  width: 90vw;
 }
 
 /*CSS HOME PAGE*/
-.btn-Container {
-    background-color: var(--color-white);
-    width: 80vw;
-    height: auto;
+.btn-Container,
+.container-compra {
+  background-color: var(--color-white);
+  width: 80vw;
+  height: auto;
 }
 
 .btn-actions:hover {
-    background-color: hsla(177, 50%, 46%, 0.424);
+  background-color: hsla(177, 50%, 46%, 0.424);
+}
+
+/*CSS COMPRA PAGE*/
+.btn-compra {
+  color: var(--color-white);
+  background-color: var(--color-darkblue);
+}
+
+.btn-compra:hover {
+  background-color: hsla(177, 50%, 46%, 0.424);
+  color: var(--color-darkblue);
+  text-decoration: none;
+}
+
+.btn-cancelar {
+  color: var(--color-darkblue);
+}
+
+.btn-cancelar:hover {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+/*btn switch*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*CSS TICKER*/
+input[readonly].ticket {
+  background-color: transparent;
+  border: 0;
+  font-size: 1em;
+  width: auto;
+  color: black;
 }

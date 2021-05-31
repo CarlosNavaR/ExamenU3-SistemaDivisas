@@ -1,0 +1,39 @@
+<div class="container containerInfoM mt-5 shadow rounded-lg">
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-center mt-5 title-time">Balance inicial</p>
+      <hr>
+      <div class="row pb-4">
+        <div class="col-md-6 text-center">$ <%- BalanceInicialUSD %> USD</div>
+        <div class="col-md-6 text-center">$ <%- BalanceInicialMXN %> MXN</div>
+      </div>
+      <p class="text-center pt-4 title-time">Balance actual</p>
+      <hr>
+      <div class="row pb-4">
+        <div class="col-md-6 text-center">$ <%- BalanceActualUSD %> USD</div>
+        <div class="col-md-6 text-center">$ <%- BalanceActualMXN %> MXN</div>
+      </div>
+      <p class="text-center pt-4 title-time">Ganancias</p>
+      <hr>
+      <div class="row pb-5">
+        <div class="col-md-6 text-center">$ <%- gananciaUSD %> USD</div>
+        <div class="col-md-6 text-center">$ <%- ganancialMXN %> MXN</div>
+      </div>
+
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-2">
+          <form action="/" method="POST">
+            <button type="submit" class="btn-compra btn btn-link">Terminar turno</button>
+          </form>
+        </div>
+        <div class="col-md-2">
+          <form action="turno" method="POST">
+            <button type="submit" class="btn-cancelar btn btn-link">Cancelar</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

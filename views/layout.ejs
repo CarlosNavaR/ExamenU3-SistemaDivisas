@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%- title %></title>
+    <title>
+      <%- title %>
+    </title>
     <link rel="icon" href="/img/money-exchange.png">
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
-</head>
+      rel="stylesheet">
 
-<body onload="showTime()">
-    <nav class="navbar justify-content-center">
-        <span class="nav-brand ">Casa de divisas <strong>Galgos</strong></span>
+  </head>
+
+  <body onload="showTime()">
+    <nav class="navbar justify-content-center shadow-sm">
+      <span class="nav-brand">Casa de divisas <strong>Galgos</strong></span>
     </nav>
 
     <main>
-        <div class="container containerTime shadow-lg rounded-lg ">
-            <p class="title-time mt-5 pt-3 text-center">Hora actual</p>
-            <p id="Time" class="time text-center pb-3"></p>
-        </div>
-        <div>
-            <%- body %>
-        </div>
+      <div class="container containerTime shadow-lg rounded-lg ">
+        <p class="title-time mt-5 pt-3 text-center">Hora actual</p>
+        <p id="Time" class="time text-center pb-3"></p>
+      </div>
+      <div>
+        <%- body %>
+      </div>
     </main>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+      </script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-</body>
 
+  </body>
 </html>
 
 <script>
-    function showTime() {
-        myDate = new Date();
-        hours = myDate.getHours();
-        minutes = myDate.getMinutes();
-        seconds = myDate.getSeconds();
-        if (hours < 10) hours = 0 + hours;
-        if (minutes < 10) minutes = "0" + minutes;
-        if (seconds < 10) seconds = "0" + seconds;
-        $("#Time").text(hours + " : " + minutes + " : " + seconds);
-        setTimeout("showTime()", 1000);
-    }
+  function showTime() {
+    myDate = new Date();
+    hours = myDate.getHours();
+    minutes = myDate.getMinutes();
+    seconds = myDate.getSeconds();
+    if (hours < 10) hours = 0 + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+    $("#Time").text(hours + " : " + minutes + " : " + seconds);
+    setTimeout("showTime()", 1000);
+  }
 </script>

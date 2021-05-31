@@ -1,0 +1,140 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4 containerInfo shadow rounded-lg mb-5">
+      <div class="container mt-5 mb-3">
+        <p class="lead text-center pb-2"> Monto recibido </p>
+        <input name="monto" id="monto" type="number" class="form-control" placeholder="Igresa cantidad" min="1"
+          step="0.01" required>
+      </div>
+      <p class="text-center lead " id="error" style="color: red; font-size: 0.9em;"></p>
+      <p class="text-center pt-2 pb-3">
+        <button type="submit" id="Generar" class="btn btn-primary" onclick="showForm()">Generar ticket</button>
+      </p>
+    </div>
+
+    <!-- Formulario ticket -->
+    <div class="col-md-1"></div>
+    <!--style="display: none;"-->
+    <div class="col-md-7 containerInfo2 shadow rounded-lg mb-5" style="display: none;" id="ticket">
+
+      <div class="container mt-5">
+        <p class="text-center lead"><strong>Datalles de transaccion</strong></p>
+        <hr>
+        <div class="form-group">
+          <div class="row justify-content-center mb-3">
+            <div class="col-8">
+              Fecha:
+            </div>
+            <div class="col-4">
+              <%-fecha%>
+            </div>
+          </div>
+          <div class="row justify-content-center mb-3">
+            <div class="col-8">
+              Vendedor:
+            </div>
+            <div class="col-4">
+              <%- nombre %>
+            </div>
+          </div>
+          <div class="row justify-content-center mb-3">
+            <div class="col-8">
+              Transacción:
+            </div>
+            <div class="col-4">
+              <%-Transaccion%>
+            </div>
+          </div>
+          <hr>
+          <div class="row justify-content-center mb-3">
+            <div class="col-8">
+              Recibe <br>
+              $ <%- usd %>
+                <%- etiqueta %>
+            </div>
+            <div class="col-4">
+              Pago <br>
+              $ <span id="montoRecibi"></span>
+              <%- etiqueta2 %>
+            </div>
+          </div>
+          <hr>
+          <div class="row justify-content-center mb-3">
+            <div class="col-4">
+            </div>
+            <div class="col-5">
+              <div class="row">
+                <div class="col-6 pt-2">
+                  Total:
+                </div>
+                <div class="col-6">
+                  $ <%- mxn %>
+                    <%- etiqueta2 %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  Cambio:
+                </div>
+                <div class="col-6">
+                  $ <span id="cambio"></span>
+                  <%- etiqueta2 %>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Form con inputs ocultos para pasar la informacion al backend-->
+      <form action="home" method="POST">
+        <input name="ClienteRecibe" id="ClienteRecibe" type="number" placeholder="0.00" min="1" step="0.01"
+          value="<%- usd %>" required style="display: none;">
+        <input name="CasaRecibe" id="CasaRecibe" type="number" placeholder="0.00" min="1" step="0.01" required
+          style="display: none;">
+        <input name="Total" id="Total" type="number" placeholder="0.00" min="1" step="0.01" value="<%- mxn %>" required
+          style="display: none;">
+        <input name="Cambio" id="Icambio" type="number" placeholder="0.00" min="1" step="0.01" required
+          style="display: none;">
+        <p class="text-center">
+          <button type="submit" class="btn btn-primary">Confirmar</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+  //Validacion si ingresa texto o no
+  let monto = 0;
+  function showForm() {
+    
+    if ($('#monto').val() === '') {
+      $('#error').text('Ingresa un monto');
+      $("#ticket").hide();
+    }
+
+    monto = $('#monto').val();
+    console.log(monto)
+    console.log($('#Total').val())
+    if (monto >= $('#Total').val()) {
+      $('#error').text(' ');
+      $("#ticket").show();
+      $("#Generar").prop('disabled', true);
+      Ticket();
+    } else {
+      document.getElementById("monto").value = null;
+      $('#error').text('Fondos insuficientes');
+    }
+  }
+
+  function Ticket() {
+    document.getElementById("CasaRecibe").value = monto;
+    $('#montoRecibi').text(monto);
+    $('#cambio').text(monto - $('#Total').val());
+    document.getElementById("Icambio").value = monto - $('#Total').val();
+    console.log(document.getElementById("Icambio").value)
+  }
+</script>
