@@ -99,8 +99,8 @@ router.post("/ticketC", (req, res) => {
   BalanceActualMXN = Number(BalanceInicialMXN) - Number(req.body.CMXN);
   BalanceInicialUSD = BalanceActualUSD;
   BalanceInicialMXN = BalanceActualMXN;
-  gananciaUSD = CajaInicialUSD - BalanceActualUSD;
-  ganancialMXN = CajaInicialMXN- BalanceActualMXN;
+  gananciaUSD = BalanceActualUSD - CajaInicialUSD;
+  ganancialMXN = BalanceActualMXN - CajaInicialMXN;
   res.render("pages/ticket", {
     title: "Compra",
     fecha: formatted,
@@ -124,8 +124,8 @@ router.post("/ticketV", (req, res) => {
   console.log(BalanceActualUSD)
   console.log(BalanceActualMXN)
   
-  gananciaUSD = CajaInicialUSD - BalanceActualUSD;
-  ganancialMXN = CajaInicialMXN - BalanceActualMXN;
+  gananciaUSD = BalanceActualUSD - CajaInicialUSD;
+  ganancialMXN = BalanceActualMXN - CajaInicialMXN;
 
   res.render("pages/ticket", {
     title: "Venta",
