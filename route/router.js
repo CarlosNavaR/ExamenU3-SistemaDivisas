@@ -18,6 +18,7 @@ let flag = 0;
 let value = 0, ventaUSD = 0, CompraUSD = 0;
 
 // To make report
+let CajaInicialMXN = 0, CajaInicialUSD = 0;
 let BalanceInicialUSD = 0, BalanceInicialMXN = 0;
 let BalanceActualUSD = 0, BalanceActualMXN = 0;
 let gananciaUSD = 0, ganancialMXN = 0;
@@ -50,11 +51,15 @@ router.post('/turno', (req, res) => {
     datos = req.body;
     BalanceInicialUSD = req.body.usd;
     BalanceInicialMXN = req.body.mxn;
+    CajaInicialMXN = BalanceInicialMXN;
+    CajaInicialUSD = BalanceInicialUSD;
     cajero = req.body.Nombre;
     flag = 1;
   } else {
     BalanceInicialUSD = datos.usd;
     BalanceInicialMXN = datos.mxn;
+    CajaInicialMXN = BalanceInicialMXN;
+    CajaInicialUSD = BalanceInicialUSD;
     cajero = datos.Nombre;
   }
   CompraUSD = (value - (value * 0.04)).toFixed(2);
@@ -92,7 +97,8 @@ router.post("/ticketC", (req, res) => {
   console.log(req.body)
   BalanceActualUSD = Number(req.body.CUSD) + Number(BalanceInicialUSD);
   BalanceActualMXN = Number(BalanceInicialMXN) - Number(req.body.CMXN);
-
+  BalanceInicialUSD = BalanceActualUSD;
+  BalanceInicialMXN = BalanceActualMXN;
   gananciaUSD = BalanceInicialUSD - BalanceActualUSD;
   ganancialMXN = BalanceInicialMXN - BalanceActualMXN;
   res.render("pages/ticket", {
@@ -112,6 +118,9 @@ router.post("/ticketV", (req, res) => {
   console.log(req.body)
   BalanceActualUSD = Number(BalanceInicialUSD) - Number(req.body.VUSD) ;
   BalanceActualMXN = Number(req.body.VMXN) + Number(BalanceInicialMXN);
+  BalanceInicialUSD = BalanceActualUSD;
+  BalanceInicialMXN = BalanceActualMXN;
+  
   console.log(BalanceActualUSD)
   console.log(BalanceActualMXN)
   
@@ -134,8 +143,8 @@ router.post("/ticketV", (req, res) => {
 router.post('/reporte', (req, res) => {
   res.render('pages/reporte', {
     title: 'reporte',
-    BalanceInicialUSD,
-    BalanceInicialMXN,
+    CajaInicialUSD,
+    CajaInicialMXN,
     BalanceActualUSD,
     BalanceActualMXN,
     gananciaUSD,
@@ -145,7 +154,6 @@ router.post('/reporte', (req, res) => {
 
 router.post('/home', (req, res) => {
   console.log(req.body)
- 
   res.render("pages/home", {
     title: "Inicio",
     Cajero: cajero,
